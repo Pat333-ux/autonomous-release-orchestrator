@@ -1,0 +1,6 @@
+system_metadata:
+  repository_name: "autonomous-release-orchestrator"
+  governing_officer: "Tarwater"
+
+operational_mandate:
+  require_final_approval_from: "Tarwater"
