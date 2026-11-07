@@ -1,0 +1,37 @@
+name: Autonomous Release Orchestrator
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  orchestrate-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pyyaml
+
+      - name: Execute Release Manager
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          TARWATER_KILL_SWITCH: "false"
+        run: |
+          python release_manager.py
