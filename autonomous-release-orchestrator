@@ -1,0 +1,9 @@
+autonomous-release-orchestrator/
+├── .github/
+│   └── workflows/
+│       └── release_pipeline.yml
+├── release_manager.py
+├── changelog_generator.py
+├── governance_config.yaml
+├── requirements.txt
+└── README.md
